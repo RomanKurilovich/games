@@ -1,8 +1,9 @@
 import React from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { StackScreenProps } from '@react-navigation/stack';
 
-import { ROUTES } from 'names';
+import { COLORS, ROUTES, TYPOGRAPHY } from 'names';
+import { ButtonPrimary, ButtonSecondary, ButtonText } from 'components';
 import { GamesStackParamList } from 'types/navigation';
 
 type Props = StackScreenProps<GamesStackParamList, ROUTES.MAIN_ROUTES.GAMES>;
@@ -22,15 +23,17 @@ const Games: React.FC<Props> = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={goToSnake}>
-        <Text>Snake</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={goToPuzzle}>
-        <Text>Puzzle</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={goToTetris}>
-        <Text>Tetris</Text>
-      </TouchableOpacity>
+      <ButtonText
+        onPress={goToSnake}
+        textType={TYPOGRAPHY.TYPES.DISPLAY}
+        title="Snake"
+      />
+      <View style={styles.buttonContainer}>
+        <ButtonPrimary title="Puzzle" onPress={goToPuzzle} />
+      </View>
+      <View style={styles.buttonContainer}>
+        <ButtonSecondary title="Tetris" onPress={goToTetris} />
+      </View>
     </View>
   );
 };
@@ -42,5 +45,10 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: COLORS.NANDOR,
+  },
+  buttonContainer: {
+    width: 200,
+    margin: 10,
   },
 });
