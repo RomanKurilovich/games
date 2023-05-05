@@ -1,0 +1,25 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "src/assets/fonts/Teko-Bold.ttf",
+      "sha1": "9379257f7ea16c874c50092942707b1d0e4d9328"
+    },
+    {
+      "path": "src/assets/fonts/Teko-Light.ttf",
+      "sha1": "55c30491cd2c88bb131fc629ae40aaee0897e788"
+    },
+    {
+      "path": "src/assets/fonts/Teko-Medium.ttf",
+      "sha1": "b5eb3f5a3c91f36276285e9d20b9f1c23ba5ae75"
+    },
+    {
+      "path": "src/assets/fonts/Teko-Regular.ttf",
+      "sha1": "925911536c88d99639ffa67df8339d2b288c241f"
+    },
+    {
+      "path": "src/assets/fonts/Teko-SemiBold.ttf",
+      "sha1": "b8f048eded9770e81b701f8e5795c1c95ad35ac3"
+    }
+  ]
+}
