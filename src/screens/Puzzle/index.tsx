@@ -1,9 +1,9 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { StyleSheet, View, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { COLORS, EDGES, SIZES, TYPOGRAPHY } from 'names';
-import { ButtonText, NavBar } from 'components';
+import { COLORS, EDGES, SIZES } from 'names';
+import { NavBar } from 'components';
 import { PuzzleTypes } from 'types';
 
 import Grid from './Grid';
@@ -16,6 +16,7 @@ import {
   mergeCells,
   slideTiles,
 } from './helpers';
+import GestureContainer from './GestureContainer';
 
 const Puzzle = () => {
   const [cells, setCells] = useState(addRandomTile(INIT_CELLS));
@@ -67,71 +68,57 @@ const Puzzle = () => {
 
         setCells(mergedCells);
       }
-    }, 100);
+    }, 60);
   };
 
-  const moveUp = () => {
+  const moveUp = useCallback(() => {
     if (canMoveUp()) {
       const slidedGroupedCells = slideTiles(groupedCells.byColumn);
 
       updateGroupedCells(slidedGroupedCells);
     }
-  };
+  }, [groupedCells]);
 
-  const moveDown = () => {
+  const moveDown = useCallback(() => {
     if (canMoveDown()) {
       const slidedGroupedCells = slideTiles(groupedCells.byReversedColumn);
 
       updateGroupedCells(slidedGroupedCells);
     }
-  };
+  }, [groupedCells]);
 
-  const moveRight = () => {
+  const moveRight = useCallback(() => {
     if (canMoveRight()) {
       const slidedGroupedCells = slideTiles(groupedCells.byReversedRow);
 
       updateGroupedCells(slidedGroupedCells);
     }
-  };
-  const moveLeft = () => {
+  }, [groupedCells]);
+
+  const moveLeft = useCallback(() => {
     if (canMoveLeft()) {
       const slidedGroupedCells = slideTiles(groupedCells.byRow);
 
       updateGroupedCells(slidedGroupedCells);
     }
-  };
+  }, [groupedCells]);
 
   return (
     <SafeAreaView style={styles.container} edges={EDGES.TOP_AND_BOTTOM}>
       <NavBar title="2048" />
-      <View style={styles.contentContainer}>
-        <View>
-          <Grid />
-          <Tiles cells={cells} />
+      <GestureContainer
+        swipeRight={moveRight}
+        swipeLeft={moveLeft}
+        swipeBottom={moveDown}
+        swipeTop={moveUp}
+      >
+        <View style={styles.contentContainer}>
+          <View>
+            <Grid />
+            <Tiles cells={cells} />
+          </View>
         </View>
-      </View>
-      <View style={styles.footerContainer}>
-        <ButtonText
-          title="left"
-          textType={TYPOGRAPHY.TYPES.DISPLAY}
-          onPress={moveLeft}
-        />
-        <ButtonText
-          title="bottom"
-          textType={TYPOGRAPHY.TYPES.DISPLAY}
-          onPress={moveDown}
-        />
-        <ButtonText
-          title="top"
-          textType={TYPOGRAPHY.TYPES.DISPLAY}
-          onPress={moveUp}
-        />
-        <ButtonText
-          title="right"
-          textType={TYPOGRAPHY.TYPES.DISPLAY}
-          onPress={moveRight}
-        />
-      </View>
+      </GestureContainer>
     </SafeAreaView>
   );
 };
@@ -147,14 +134,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: SIZES.CONTENT_MARGIN,
-  },
-  footerContainer: {
-    height: 50,
-    width: '100%',
-    backgroundColor: COLORS.CEDAR,
-    paddingHorizontal: 16,
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center',
   },
 });
