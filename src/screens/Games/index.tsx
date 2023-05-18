@@ -1,38 +1,39 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { StackScreenProps } from '@react-navigation/stack';
 
-import { COLORS, ROUTES, TYPOGRAPHY } from 'names';
-import { ButtonPrimary, ButtonSecondary, ButtonText } from 'components';
-import { GamesStackParamList } from 'types/navigation';
+import { COLORS, ROUTES } from 'names';
+import { ButtonPrimary } from 'components';
+import { NavigationTypes } from 'types';
 
-type Props = StackScreenProps<GamesStackParamList, ROUTES.MAIN_ROUTES.GAMES>;
+type Props = StackScreenProps<
+  NavigationTypes.GamesStackParamList,
+  ROUTES.MAIN_ROUTES.GAMES
+>;
 
 const Games: React.FC<Props> = ({ navigation }) => {
-  const goToSnake = () => {
+  const goToSnake = useCallback(() => {
     navigation.navigate(ROUTES.MAIN_ROUTES.SNAKE);
-  };
+  }, [navigation]);
 
-  const goToPuzzle = () => {
+  const goToPuzzle = useCallback(() => {
     navigation.navigate(ROUTES.MAIN_ROUTES.PUZZLE);
-  };
+  }, [navigation]);
 
-  const goToTetris = () => {
+  const goToTetris = useCallback(() => {
     navigation.navigate(ROUTES.MAIN_ROUTES.TETRIS);
-  };
+  }, [navigation]);
 
   return (
     <View style={styles.container}>
-      <ButtonText
-        onPress={goToSnake}
-        textType={TYPOGRAPHY.TYPES.DISPLAY}
-        title="Snake"
-      />
       <View style={styles.buttonContainer}>
-        <ButtonPrimary title="Puzzle" onPress={goToPuzzle} />
+        <ButtonPrimary title="2048" onPress={goToPuzzle} />
       </View>
       <View style={styles.buttonContainer}>
-        <ButtonSecondary title="Tetris" onPress={goToTetris} />
+        <ButtonPrimary title="Snake" onPress={goToSnake} />
+      </View>
+      <View style={styles.buttonContainer}>
+        <ButtonPrimary title="Tetris" onPress={goToTetris} />
       </View>
     </View>
   );

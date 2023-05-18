@@ -1,16 +1,27 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+
+import { COLORS, EDGES, TYPOGRAPHY } from 'names';
+import { AppText, NavBar } from 'components';
 
 const Snake = () => (
-  <View style={styles.container}>
-    <Text>Snake</Text>
-  </View>
+  <SafeAreaView style={styles.container} edges={EDGES.TOP_AND_BOTTOM}>
+    <NavBar title="Snake" />
+    <View style={styles.contentContainer}>
+      <AppText type={TYPOGRAPHY.TYPES.DISPLAY}>In Developing...</AppText>
+    </View>
+  </SafeAreaView>
 );
 
 export default Snake;
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
+    backgroundColor: COLORS.NANDOR,
+  },
+  contentContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',

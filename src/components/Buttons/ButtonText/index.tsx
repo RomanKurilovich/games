@@ -7,10 +7,10 @@ import { TYPOGRAPHY } from 'names';
 type Props = {
   title: string;
   onPress: () => void;
-  textType: TYPOGRAPHY.TYPES;
+  textType?: TYPOGRAPHY.TYPES;
 };
 
-const ButtonText: React.FC<Props> = ({ title, onPress, textType }) => (
+const ButtonText = ({ title, onPress, textType }: Props) => (
   <TouchableOpacity onPress={onPress}>
     <AppText type={textType}>{title}</AppText>
   </TouchableOpacity>

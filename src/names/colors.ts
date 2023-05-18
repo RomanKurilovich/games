@@ -11,3 +11,4 @@ export const DAWN = '#A5A097';
 export const TIDE = '#B5B0A7';
 export const BUTTERCUP = '#F5AD0A';
 export const CEDAR = '#3C1024';
+export const HEAVY_METAL = '#2E2F2C';

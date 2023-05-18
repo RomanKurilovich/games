@@ -11,6 +11,7 @@ module.exports = {
       },
       rules: {
         'newline-before-return': 2,
+        'react-hooks/exhaustive-deps': 1,
       },
     },
   ],
