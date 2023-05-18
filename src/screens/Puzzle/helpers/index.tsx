@@ -2,6 +2,7 @@ import _ from 'lodash';
 import uuid from 'react-native-uuid';
 
 import { PuzzleTypes } from 'types';
+
 import { CELLS_COUNT, GRID_SIZE } from '../sizes';
 
 const canMoveTile = (toCell: PuzzleTypes.Cell, fromCell: PuzzleTypes.Cell) => {
@@ -125,12 +126,8 @@ const slideTilesInGroup = (group: PuzzleTypes.Cells) => {
     };
     const updatedCurrentCell = { ...currentCell, tiles: [] };
 
-    updatedGroup.splice(
-      indexUpdatedCell,
-      1,
-      updatedTargetCell,
-      updatedCurrentCell,
-    );
+    updatedGroup.splice(indexUpdatedCell, 1, updatedTargetCell);
+    updatedGroup.push(updatedCurrentCell);
   }
 
   return updatedGroup;
