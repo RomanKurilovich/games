@@ -8,17 +8,17 @@ type Props = {
   style?: StyleProp<TextStyle>;
 };
 
-const AppText: React.FC<PropsWithChildren<Props>> = ({
+const AppText = ({
   children,
   type = TYPOGRAPHY.TYPES.BODY,
   style,
-}) => {
-  const containerStyle = useMemo(
+}: PropsWithChildren<Props>) => {
+  const containerStyles = useMemo(
     () => (style ? [TYPOGRAPHY.STYLES[type], style] : TYPOGRAPHY.STYLES[type]),
     [style, type],
   );
 
-  return <Text style={containerStyle}>{children}</Text>;
+  return <Text style={containerStyles}>{children}</Text>;
 };
 
 export default memo(AppText);

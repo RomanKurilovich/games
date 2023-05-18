@@ -9,7 +9,7 @@ type Props = {
   onPress: () => void;
 };
 
-const ButtonSecondary: React.FC<Props> = ({ title, onPress }) => (
+const ButtonSecondary = ({ title, onPress }: Props) => (
   <TouchableOpacity style={styles.container} onPress={onPress}>
     <AppText type={TYPOGRAPHY.TYPES.DISPLAY} style={styles.title}>
       {title}

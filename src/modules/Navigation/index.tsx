@@ -11,6 +11,7 @@ import { ROUTES } from 'names';
 import { NavigationTypes } from 'types';
 
 import GamesStackNavigator from './Stacks/Games';
+import { navigationRef } from './actions';
 
 const SCREEN_OPTIONS: StackNavigationOptions = {
   headerShown: false,
@@ -20,7 +21,7 @@ const RootStack = createStackNavigator<NavigationTypes.RootStackParamList>();
 
 const Navigator = () => (
   <GestureHandlerRootView style={styles.container}>
-    <NavigationContainer>
+    <NavigationContainer ref={navigationRef}>
       <RootStack.Navigator screenOptions={SCREEN_OPTIONS}>
         <RootStack.Screen
           name={ROUTES.MAIN_ROUTES.GAMES_STACK}
