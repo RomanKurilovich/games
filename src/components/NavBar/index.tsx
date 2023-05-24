@@ -15,7 +15,7 @@ const NavBar = ({ title }: Props) => (
     <TouchableOpacity onPress={goBack}>
       <ArrowLeft fill={COLORS.NANDOR} height={30} width={30} />
     </TouchableOpacity>
-    <AppText type={TYPOGRAPHY.TYPES.TITLE_EMPHASIZED} style={styles.title}>
+    <AppText type={TYPOGRAPHY.TYPES.DISPLAY} style={styles.title}>
       {title}
     </AppText>
     <View style={styles.lastView} />
@@ -26,7 +26,7 @@ export default NavBar;
 
 const styles = StyleSheet.create({
   navBar: {
-    height: 50,
+    height: 56,
     width: '100%',
     backgroundColor: COLORS.PARIS_WHITE,
     alignItems: 'center',
@@ -38,6 +38,6 @@ const styles = StyleSheet.create({
     color: COLORS.NANDOR,
   },
   lastView: {
-    width: 40,
+    width: 30,
   },
 });

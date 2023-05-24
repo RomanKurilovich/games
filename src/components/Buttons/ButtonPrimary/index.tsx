@@ -22,7 +22,7 @@ export default memo(ButtonPrimary);
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    height: 44,
+    height: 56,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: COLORS.PARIS_WHITE,

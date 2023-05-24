@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import { StyleSheet, View } from 'react-native';
 import _ from 'lodash';
 
-import { SEPARATOR_SIZE, GRID_SIZE } from '../sizes';
+import { SEPARATOR_SIZE, GRID_SIZE } from '../names';
 import RowCells from './RowCells';
 
 const Grid = () => (

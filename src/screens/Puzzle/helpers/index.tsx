@@ -3,7 +3,7 @@ import uuid from 'react-native-uuid';
 
 import { PuzzleTypes } from 'types';
 
-import { CELLS_COUNT, GRID_SIZE } from '../sizes';
+import { CELLS_COUNT, GRID_SIZE } from '../names';
 
 const canMoveTile = (toCell: PuzzleTypes.Cell, fromCell: PuzzleTypes.Cell) => {
   const cellIsFree = !toCell.tiles.length;
@@ -43,7 +43,7 @@ export const INIT_CELLS = _.times(CELLS_COUNT).map((value, index) => ({
 
 export const createTile = (value?: number) => ({
   id: uuid.v4() as string,
-  value: value || Math.random() > 0.7 ? 4 : 2,
+  value: value ? value : Math.random() > 0.7 ? 4 : 2,
 });
 
 export const addRandomTile = (cells: PuzzleTypes.Cells) => {
@@ -168,10 +168,11 @@ export const mergeCells = (
 
     if (needMergeCurrentCell) {
       const currentTile = cell.tiles[0];
+      const createdTile = createTile(currentTile.value * 2);
 
       return {
         ...cell,
-        tiles: [{ ...currentTile, value: currentTile.value * 2 }],
+        tiles: [createdTile],
       };
     }
 
