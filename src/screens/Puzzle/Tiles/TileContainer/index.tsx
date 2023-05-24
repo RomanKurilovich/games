@@ -1,11 +1,17 @@
 import React, { memo, useMemo } from 'react';
 import { StyleSheet } from 'react-native';
-import Animated, { Layout, StretchInX } from 'react-native-reanimated';
+import Animated, { FadeOut, Layout, StretchInX } from 'react-native-reanimated';
 
 import { PuzzleTypes } from 'types';
 
 import Tile from '../Tile';
-import { CELL_SIDE_SIZE, getSpaces } from '../../sizes';
+import {
+  CELL_SIDE_SIZE,
+  getSpaces,
+  TILE_ENTERING_DURATION,
+  TILE_EXITING_DURATION,
+  TILE_MOVEMENT_TIME,
+} from '../../names';
 
 type Props = {
   cell: PuzzleTypes.Cell;
@@ -22,8 +28,9 @@ const TileContainer = ({ cell, value }: Props) => {
   return (
     <Animated.View
       style={containerStyles}
-      entering={StretchInX.duration(200)}
-      layout={Layout.duration(100)}
+      entering={StretchInX.duration(TILE_ENTERING_DURATION)}
+      exiting={FadeOut.duration(TILE_EXITING_DURATION)}
+      layout={Layout.duration(TILE_MOVEMENT_TIME)}
     >
       <Tile value={value} />
     </Animated.View>

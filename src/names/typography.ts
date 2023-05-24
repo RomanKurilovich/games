@@ -64,6 +64,7 @@ export const STYLES = StyleSheet.create({
   },
   [TYPES.DISPLAY]: {
     fontSize: 34,
+    lineHeight: 62,
     fontFamily: FONT.TEKO_BOLD,
     color: COLORS.PARIS_WHITE,
   },

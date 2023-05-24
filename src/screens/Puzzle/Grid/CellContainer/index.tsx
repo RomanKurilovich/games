@@ -1,7 +1,7 @@
 import React, { memo, useMemo } from 'react';
 import { StyleSheet, View } from 'react-native';
 
-import { SEPARATOR_SIZE, CELL_SIDE_SIZE } from '../../sizes';
+import { SEPARATOR_SIZE, CELL_SIDE_SIZE } from '../../names';
 import Cell from '../Cell';
 
 type Props = {
