@@ -61,6 +61,8 @@ export const addRandomTile = (cells: PuzzleTypes.Cells) => {
   });
 };
 
+export const cellsWithRandomTile = addRandomTile(INIT_CELLS);
+
 export const getGroupedCells = (cells: PuzzleTypes.Cells) => {
   const byColumn = cells.reduce(
     (groupedCells: PuzzleTypes.CellsGroup, cell) => {
