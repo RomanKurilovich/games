@@ -17,8 +17,8 @@
 		529C99B870C14989B88EE8DC /* Teko-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 34700383B49A40909DD3F5F7 /* Teko-Regular.ttf */; };
 		5656AC312FFA4F99B2EDF4A6 /* Teko-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CA6AFAE7D41C4E46B8E54113 /* Teko-Light.ttf */; };
 		7699B88040F8A987B510C191 /* libPods-games-gamesTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-games-gamesTests.a */; };
-		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		B53AD0783A624AE68E6642D5 /* Teko-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4CE89480F2794AB19A9514BD /* Teko-SemiBold.ttf */; };
+		E0E3A6EA2A21051D00490CAE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0E3A6E92A21051D00490CAE /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,17 +42,17 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = games/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = games/main.m; sourceTree = "<group>"; };
 		19F6CBCC0A4E27FBF8BF4A61 /* libPods-games-gamesTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-games-gamesTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2550E3829BC54C148AF0A71C /* Teko-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Teko-Medium.ttf"; path = "../src/assets/fonts/Teko-Medium.ttf"; sourceTree = "<group>"; };
-		34700383B49A40909DD3F5F7 /* Teko-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Teko-Regular.ttf"; path = "../src/assets/fonts/Teko-Regular.ttf"; sourceTree = "<group>"; };
+		2550E3829BC54C148AF0A71C /* Teko-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Teko-Medium.ttf"; path = "../src/assets/fonts/Teko-Medium.ttf"; sourceTree = "<group>"; };
+		34700383B49A40909DD3F5F7 /* Teko-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Teko-Regular.ttf"; path = "../src/assets/fonts/Teko-Regular.ttf"; sourceTree = "<group>"; };
 		3B4392A12AC88292D35C810B /* Pods-games.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-games.debug.xcconfig"; path = "Target Support Files/Pods-games/Pods-games.debug.xcconfig"; sourceTree = "<group>"; };
-		4CE89480F2794AB19A9514BD /* Teko-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Teko-SemiBold.ttf"; path = "../src/assets/fonts/Teko-SemiBold.ttf"; sourceTree = "<group>"; };
+		4CE89480F2794AB19A9514BD /* Teko-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Teko-SemiBold.ttf"; path = "../src/assets/fonts/Teko-SemiBold.ttf"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-games.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-games.release.xcconfig"; path = "Target Support Files/Pods-games/Pods-games.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-games-gamesTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-games-gamesTests.debug.xcconfig"; path = "Target Support Files/Pods-games-gamesTests/Pods-games-gamesTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-games.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-games.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = games/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-games-gamesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-games-gamesTests.release.xcconfig"; path = "Target Support Files/Pods-games-gamesTests/Pods-games-gamesTests.release.xcconfig"; sourceTree = "<group>"; };
-		C870740871034A73813A0E12 /* Teko-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Teko-Bold.ttf"; path = "../src/assets/fonts/Teko-Bold.ttf"; sourceTree = "<group>"; };
-		CA6AFAE7D41C4E46B8E54113 /* Teko-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Teko-Light.ttf"; path = "../src/assets/fonts/Teko-Light.ttf"; sourceTree = "<group>"; };
+		C870740871034A73813A0E12 /* Teko-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Teko-Bold.ttf"; path = "../src/assets/fonts/Teko-Bold.ttf"; sourceTree = "<group>"; };
+		CA6AFAE7D41C4E46B8E54113 /* Teko-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Teko-Light.ttf"; path = "../src/assets/fonts/Teko-Light.ttf"; sourceTree = "<group>"; };
+		E0E3A6E92A21051D00490CAE /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -100,8 +100,8 @@
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
-				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
+				E0E3A6E92A21051D00490CAE /* LaunchScreen.storyboard */,
 			);
 			name = games;
 			sourceTree = "<group>";
@@ -169,7 +169,6 @@
 				4CE89480F2794AB19A9514BD /* Teko-SemiBold.ttf */,
 			);
 			name = Resources;
-			path = "";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -266,8 +265,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				E0E3A6EA2A21051D00490CAE /* LaunchScreen.storyboard in Resources */,
 				1F2F49526B4140C29DF3120E /* Teko-Bold.ttf in Resources */,
 				5656AC312FFA4F99B2EDF4A6 /* Teko-Light.ttf in Resources */,
 				05910C690F804CD4A39EF5D7 /* Teko-Medium.ttf in Resources */,
