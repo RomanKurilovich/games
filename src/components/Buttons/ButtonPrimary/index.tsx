@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: COLORS.PARIS_WHITE,
-    borderRadius: 8,
+    borderRadius: 4,
   },
   title: {
     color: COLORS.CORDUROY,

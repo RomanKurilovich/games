@@ -1,29 +1,25 @@
 import React, { memo } from 'react';
 import { StyleSheet, View } from 'react-native';
 
-import { AppText, ButtonText } from 'components';
 import { TYPOGRAPHY } from 'names';
+import { AppText } from 'components';
 
 type Props = {
   score: number;
-  restart: () => void;
+  maxScore: number;
 };
 
-const Header = ({ score, restart }: Props) => (
-  <View style={styles.headerContainer}>
+const ScorePanel = ({ score, maxScore }: Props) => (
+  <View style={styles.container}>
+    <AppText type={TYPOGRAPHY.TYPES.DISPLAY}>{`Max: ${maxScore}`}</AppText>
     <AppText type={TYPOGRAPHY.TYPES.DISPLAY}>{`Score: ${score}`}</AppText>
-    <ButtonText
-      title="Reset"
-      onPress={restart}
-      textType={TYPOGRAPHY.TYPES.DISPLAY}
-    />
   </View>
 );
 
-export default memo(Header);
+export default memo(ScorePanel);
 
 const styles = StyleSheet.create({
-  headerContainer: {
+  container: {
     flexDirection: 'row',
     justifyContent: 'space-between',
   },

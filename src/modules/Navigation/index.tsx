@@ -11,8 +11,8 @@ import SplashScreen from 'react-native-splash-screen';
 import { ROUTES } from 'names';
 import { NavigationTypes } from 'types';
 
-import GamesStackNavigator from './Stacks/Games';
 import { navigationRef } from './actions';
+import GamesStackNavigator from './Stacks/Games';
 
 const SCREEN_OPTIONS: StackNavigationOptions = {
   headerShown: false,

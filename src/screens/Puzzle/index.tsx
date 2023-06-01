@@ -1,53 +1,26 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { COLORS, EDGES, SIZES } from 'names';
-import { NavBar } from 'components';
-import { PuzzleTypes } from 'types';
-import {
-  cellsSelector,
-  scoreSelector,
-  setCells as setCellsAction,
-  setScore as setScoreAction,
-} from 'store/puzzle';
+import { NavBar, ScorePanel } from 'components';
+import { useAppSelector } from 'hooks/redux';
+import { maxScoreSelector, scoreSelector } from 'store/puzzle/selectors';
 
-import { addRandomTile, INIT_CELLS } from './helpers';
-import Header from './Header';
+import Footer from './Footer';
 import GameBoard from './GameBoard';
 
 const Puzzle = () => {
-  const dispatch = useDispatch();
-
-  const cells = useSelector(cellsSelector);
-  const score = useSelector(scoreSelector);
-
-  const setCells = useCallback((cells: PuzzleTypes.Cells) => {
-    dispatch(setCellsAction(cells));
-  }, []);
-
-  const setScore = useCallback((updatedScore: number) => {
-    dispatch(setScoreAction(updatedScore));
-  }, []);
-
-  const restart = useCallback(() => {
-    setCells(addRandomTile(INIT_CELLS));
-    setScore(0);
-  }, []);
+  const score = useAppSelector(scoreSelector);
+  const maxScore = useAppSelector(maxScoreSelector);
 
   return (
     <SafeAreaView style={styles.container} edges={EDGES.TOP_AND_BOTTOM}>
       <NavBar title="2048" />
       <View style={styles.contentContainer}>
-        <Header score={score} restart={restart} />
-        <GameBoard
-          cells={cells}
-          score={score}
-          setCells={setCells}
-          setScore={setScore}
-          restart={restart}
-        />
+        <ScorePanel score={score} maxScore={maxScore} />
+        <GameBoard />
+        <Footer />
       </View>
     </SafeAreaView>
   );
@@ -62,6 +35,6 @@ const styles = StyleSheet.create({
   contentContainer: {
     flex: 1,
     justifyContent: 'center',
-    paddingHorizontal: SIZES.CONTENT_MARGIN,
+    margin: SIZES.CONTENT_MARGIN,
   },
 });

@@ -1,4 +1,11 @@
-import { Dimensions } from 'react-native';
-
-export const { width: DEVICE_WIDTH, height: DEVICE_HEIGHT } =
-  Dimensions.get('window');
+export const getSpaces = (
+  x: number,
+  y: number,
+  separatorSize: number,
+  cellSize: number,
+) => {
+  return {
+    left: (separatorSize + cellSize) * x,
+    top: (separatorSize + cellSize) * y,
+  };
+};
