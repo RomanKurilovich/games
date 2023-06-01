@@ -25,4 +25,4 @@ export const SNAKE_INITIAL_POSITION = [
   { x: 3, y: 3 },
 ];
 
-export const MOVE_INTERVAL = 80;
+export const MOVE_INTERVAL = 100;

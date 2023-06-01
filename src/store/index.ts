@@ -10,6 +10,8 @@ import {
   REHYDRATE,
 } from 'redux-persist';
 
+import StoreService from 'store/StoreService';
+
 import { storage } from './storage';
 import puzzleSlice from './puzzle';
 import snakeSlice from './snake';
@@ -45,5 +47,8 @@ const store = configureStore({
 });
 
 export const persistor = persistStore(store);
+
+StoreService.setPersistorReference(persistor);
+StoreService.setStoreReference(store);
 
 export default store;
