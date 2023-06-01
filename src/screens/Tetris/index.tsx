@@ -2,8 +2,8 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { COLORS, EDGES, TYPOGRAPHY } from 'names';
 import { AppText, NavBar } from 'components';
+import { COLORS, EDGES, TYPOGRAPHY } from 'names';
 
 const Tetris = () => (
   <SafeAreaView style={styles.container} edges={EDGES.TOP_AND_BOTTOM}>

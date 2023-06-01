@@ -20,7 +20,7 @@ export default memo(Tile);
 
 const styles = StyleSheet.create({
   container: {
-    borderRadius: 8,
+    borderRadius: 4,
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',

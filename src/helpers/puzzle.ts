@@ -3,8 +3,6 @@ import uuid from 'react-native-uuid';
 
 import { PuzzleTypes } from 'types';
 
-import { CELLS_COUNT, GRID_SIZE } from '../names';
-
 const canMoveTile = (toCell: PuzzleTypes.Cell, fromCell: PuzzleTypes.Cell) => {
   const cellIsFree = !toCell.tiles.length;
   const cellCanMerge =
@@ -34,13 +32,6 @@ const canMoveInGroup = (group: PuzzleTypes.Cells) => {
 const canMove = (groupedCells: PuzzleTypes.CellsGroup) =>
   groupedCells.some((group) => canMoveInGroup(group));
 
-export const INIT_CELLS = _.times(CELLS_COUNT).map((value, index) => ({
-  x: index % GRID_SIZE,
-  y: Math.floor(index / GRID_SIZE),
-  tiles: [],
-  index,
-}));
-
 export const createTile = (value?: number) => ({
   id: uuid.v4() as string,
   value: value ? value : Math.random() > 0.7 ? 4 : 2,
@@ -60,8 +51,6 @@ export const addRandomTile = (cells: PuzzleTypes.Cells) => {
     return { ...cell, tiles: [createdTile] };
   });
 };
-
-export const cellsWithRandomTile = addRandomTile(INIT_CELLS);
 
 export const getGroupedCells = (cells: PuzzleTypes.Cells) => {
   const byColumn = cells.reduce(

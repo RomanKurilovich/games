@@ -1,45 +1,36 @@
-import { createSelector, createSlice } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
-import { PuzzleTypes, StoreTypes } from 'types';
-import { cellsWithRandomTile } from 'screens/Puzzle/helpers';
+import { PuzzleTypes } from 'types';
+import { PUZZLE } from 'names';
+import { addRandomTile } from 'helpers/puzzle';
 
 type SliceState = {
   cells: PuzzleTypes.Cells;
   score: number;
+  maxScore: number;
 };
 
 const initialState: SliceState = {
-  cells: cellsWithRandomTile,
+  cells: addRandomTile(PUZZLE.INIT_CELLS),
   score: 0,
+  maxScore: 0,
 };
 
 const puzzleSlice = createSlice({
   name: 'puzzle',
   initialState,
   reducers: {
-    setCells: (state, actions) => {
-      state.cells = actions.payload;
+    setCells: (state, action) => {
+      state.cells = action.payload;
     },
-    setScore: (state, actions) => {
-      state.score = actions.payload;
+    setScore: (state, action) => {
+      state.score = action.payload;
+
+      if (state.maxScore < action.payload) {
+        state.maxScore = action.payload;
+      }
     },
   },
 });
-
-const puzzleStateSelector = (state: StoreTypes.RootState) => state.puzzle;
-
-export const cellsSelector = createSelector(
-  puzzleStateSelector,
-  (state) => state.cells,
-);
-
-export const scoreSelector = createSelector(
-  puzzleStateSelector,
-  (state) => state.score,
-);
-
-const { actions } = puzzleSlice;
-
-export const { setCells, setScore } = actions;
 
 export default puzzleSlice;

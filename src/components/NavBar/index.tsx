@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
 
-import { COLORS, TYPOGRAPHY } from 'names';
+import { COLORS, SIZES, TYPOGRAPHY } from 'names';
 import { AppText } from 'components';
 import { goBack } from 'modules/Navigation/actions';
 import ArrowLeft from 'assets/icons/arrows/arrowLeft.svg';
@@ -22,7 +22,7 @@ const NavBar = ({ title }: Props) => (
   </View>
 );
 
-export default NavBar;
+export default memo(NavBar);
 
 const styles = StyleSheet.create({
   navBar: {
@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     flexDirection: 'row',
-    paddingHorizontal: 16,
+    paddingHorizontal: SIZES.CONTENT_MARGIN,
   },
   title: {
     color: COLORS.NANDOR,

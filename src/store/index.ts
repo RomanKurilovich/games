@@ -12,8 +12,12 @@ import {
 
 import { storage } from './storage';
 import puzzleSlice from './puzzle';
+import snakeSlice from './snake';
 
-export const rootReducer = combineReducers({ puzzle: puzzleSlice.reducer });
+export const rootReducer = combineReducers({
+  puzzle: puzzleSlice.reducer,
+  snake: snakeSlice.reducer,
+});
 
 const persistConfig = {
   key: 'root',

@@ -3,8 +3,8 @@ import { StyleSheet, View } from 'react-native';
 import { StackScreenProps } from '@react-navigation/stack';
 
 import { COLORS, ROUTES } from 'names';
-import { ButtonPrimary } from 'components';
 import { NavigationTypes } from 'types';
+import { ButtonPrimary } from 'components';
 
 type Props = StackScreenProps<
   NavigationTypes.GamesStackParamList,
