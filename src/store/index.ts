@@ -13,6 +13,7 @@ import {
 import { storage } from './storage';
 import puzzleSlice from './puzzle';
 import snakeSlice from './snake';
+import StoreService from 'store/StoreService';
 
 export const rootReducer = combineReducers({
   puzzle: puzzleSlice.reducer,
@@ -45,5 +46,8 @@ const store = configureStore({
 });
 
 export const persistor = persistStore(store);
+
+StoreService.setPersistorReference(persistor);
+StoreService.setStoreReference(store);
 
 export default store;

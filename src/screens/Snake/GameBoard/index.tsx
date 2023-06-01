@@ -11,10 +11,10 @@ import {
   checkGameOver,
   getRandomFoodPosition,
 } from 'helpers/snake';
+import StoreService from 'store/StoreService';
 import {
   directionSelector,
   foodSelector,
-  scoreSelector,
   snakeSelector,
   statusSelector,
 } from 'store/snake/selectors';
@@ -32,21 +32,18 @@ import Food from '../Food';
 const GameBoard = () => {
   const dispatch = useAppDispatch();
 
-  const score = useAppSelector(scoreSelector);
   const status = useAppSelector(statusSelector);
   const snake = useAppSelector(snakeSelector);
   const food = useAppSelector(foodSelector);
   const direction = useAppSelector(directionSelector);
 
   useEffect(() => {
-    if (status === STATUSES.GAME_STATUSES.IN_PROGRESS) {
-      const intervalId = setInterval(() => {
-        moveSnake();
-      }, SNAKE.MOVE_INTERVAL);
+    const intervalId = setInterval(() => {
+      moveSnake();
+    }, SNAKE.MOVE_INTERVAL);
 
-      return () => clearInterval(intervalId);
-    }
-  }, [direction, snake, status]);
+    return () => clearInterval(intervalId);
+  }, []);
 
   const setSnake = (updatedSnake: SnakeTypes.Snake) => {
     dispatch(setSnakeAction(updatedSnake));
@@ -69,10 +66,23 @@ const GameBoard = () => {
   };
 
   const moveSnake = () => {
-    const snakeHead = snake[0];
+    const state = StoreService.getState();
+    const {
+      snake: actualSnake,
+      direction: actualDirection,
+      status: actualStatus,
+      food: actualFood,
+      score: actualScore,
+    } = state.snake;
+
+    if (actualStatus !== STATUSES.GAME_STATUSES.IN_PROGRESS) {
+      return;
+    }
+
+    const snakeHead = actualSnake[0];
     const updatedHead = { ...snakeHead };
 
-    switch (direction) {
+    switch (actualDirection) {
       case GESTURE.DIRECTION.UP:
         updatedHead.y -= 1;
         break;
@@ -89,24 +99,24 @@ const GameBoard = () => {
         break;
     }
 
-    if (checkGameOver(updatedHead, SNAKE.BOUNDARIES, snake)) {
+    if (checkGameOver(updatedHead, SNAKE.BOUNDARIES, actualSnake)) {
       setStatus(STATUSES.GAME_STATUSES.IS_OVER);
       Alert.alert('Game over', '');
 
       return;
     }
 
-    if (checkEatsFood(updatedHead, food)) {
+    if (checkEatsFood(updatedHead, actualFood)) {
       const randomFoodPosition = getRandomFoodPosition(
         SNAKE.BOUNDARIES.xMax,
         SNAKE.BOUNDARIES.yMax,
       );
 
-      setSnake([updatedHead, ...snake]);
-      setScore(score + 1);
+      setSnake([updatedHead, ...actualSnake]);
+      setScore(actualScore + 1);
       setFood(randomFoodPosition);
     } else {
-      setSnake([updatedHead, ...snake.slice(0, -1)]);
+      setSnake([updatedHead, ...actualSnake.slice(0, -1)]);
     }
   };
 
