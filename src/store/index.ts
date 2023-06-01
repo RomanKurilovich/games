@@ -10,10 +10,11 @@ import {
   REHYDRATE,
 } from 'redux-persist';
 
+import StoreService from 'store/StoreService';
+
 import { storage } from './storage';
 import puzzleSlice from './puzzle';
 import snakeSlice from './snake';
-import StoreService from 'store/StoreService';
 
 export const rootReducer = combineReducers({
   puzzle: puzzleSlice.reducer,

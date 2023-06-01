@@ -18,7 +18,7 @@ class StoreService {
     return this._store!.getState();
   };
 
-  dispatch = (action: StoreTypes.AppDispatch) => {
+  dispatch = (action: StoreTypes.DispatchActionType) => {
     this._store!.dispatch(action);
   };
   purge = () => {
