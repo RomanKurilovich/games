@@ -1,3 +1,5 @@
+export type CellValueType = 0;
+
 export type Cell = {
   x: number;
   y: number;
@@ -11,7 +13,9 @@ export type Tile = {
 };
 
 export type Cells = Array<Cell>;
+
 export type Tiles = Array<Tile>;
+
 export type CellsGroup = Array<Cells>;
 
 export type GroupedCells = {

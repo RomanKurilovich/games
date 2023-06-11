@@ -1,5 +1,5 @@
-import { GESTURE, SNAKE, STATUSES } from 'names';
 import { StoreTypes } from 'types';
+import { GESTURE, SNAKE, STATUSES } from 'names';
 import { getRandomFoodPosition } from 'helpers/snake';
 
 import snakeSlice from '../snake';

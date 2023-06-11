@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
-import { COLORS } from 'names/index';
+
+import { COLORS } from 'names';
 
 const FONT = {
   TEKO_LIGHT: 'Teko-Light',

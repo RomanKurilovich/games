@@ -3,28 +3,22 @@ import { StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { COLORS, EDGES, SIZES } from 'names';
-import { NavBar, ScorePanel } from 'components';
-import { useAppSelector } from 'hooks/redux';
-import { maxScoreSelector, scoreSelector } from 'store/snake/selectors';
+import { NavBar } from 'components';
 
 import GameBoard from './GameBoard';
 import FooterContainer from './FooterContainer';
+import ScorePanelContainer from './ScorePanelContainer';
 
-const Snake = () => {
-  const score = useAppSelector(scoreSelector);
-  const maxScore = useAppSelector(maxScoreSelector);
-
-  return (
-    <SafeAreaView style={styles.container} edges={EDGES.TOP_AND_BOTTOM}>
-      <NavBar title="Snake" />
-      <View style={styles.contentContainer}>
-        <ScorePanel score={score} maxScore={maxScore} />
-        <GameBoard />
-        <FooterContainer />
-      </View>
-    </SafeAreaView>
-  );
-};
+const Snake = () => (
+  <SafeAreaView style={styles.container} edges={EDGES.TOP_AND_BOTTOM}>
+    <NavBar title="Snake" />
+    <View style={styles.contentContainer}>
+      <ScorePanelContainer />
+      <GameBoard />
+      <FooterContainer />
+    </View>
+  </SafeAreaView>
+);
 
 export default Snake;
 

@@ -12,7 +12,7 @@ const SnakeView = ({ snake }: Props) => {
   return (
     <Fragment>
       {snake.map((segment, index) => (
-        <SnakeSegment coordinate={segment} key={index} />
+        <SnakeSegment x={segment.x} y={segment.y} key={index} />
       ))}
     </Fragment>
   );

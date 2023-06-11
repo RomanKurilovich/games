@@ -1,34 +1,30 @@
-import React, { memo, useMemo } from 'react';
-import { StyleSheet, View } from 'react-native';
+import React, { memo } from 'react';
+import { StyleSheet } from 'react-native';
 
-import { SnakeTypes } from 'types';
 import { COLORS, SNAKE } from 'names';
-import { getSpaces } from 'helpers/sizes';
+import { CellAbsolute } from 'components';
 
 type Props = {
-  coordinate: SnakeTypes.Coordinate;
+  x: number;
+  y: number;
 };
 
-const SnakeSegment = ({ coordinate }: Props) => {
-  const { left, top } = getSpaces(
-    coordinate.x,
-    coordinate.y,
-    SNAKE.SEPARATOR_SIZE,
-    SNAKE.CELL_SIDE_SIZE,
+const SnakeSegment = ({ x, y }: Props) => {
+  return (
+    <CellAbsolute
+      x={x}
+      y={y}
+      separatorSize={SNAKE.SEPARATOR_SIZE}
+      cellSideSize={SNAKE.CELL_SIDE_SIZE}
+      style={styles.container}
+    />
   );
-
-  const containerStyles = useMemo(
-    () => [styles.segment, { left, top }],
-    [left, top],
-  );
-
-  return <View style={containerStyles} />;
 };
 
 export default memo(SnakeSegment);
 
 const styles = StyleSheet.create({
-  segment: {
+  container: {
     width: SNAKE.CELL_SIDE_SIZE,
     height: SNAKE.CELL_SIDE_SIZE,
     backgroundColor: COLORS.PARIS_WHITE,

@@ -11,3 +11,5 @@ export type Boundaries = {
   yMin: number;
   yMax: number;
 };
+
+export type CellValueType = 0;

@@ -1,31 +1,38 @@
 import React, { memo } from 'react';
-import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
-import _ from 'lodash';
+import { StyleSheet, View } from 'react-native';
 
-import CellContainer from '../CellContainer';
+import { GridTypes } from 'types';
 
-type Props = {
-  numberCells: number;
+import Cell from '../Cell';
+
+type Props<T extends number> = {
   separatorSize: number;
-  cellStyles: StyleProp<ViewStyle>;
+  cells: GridTypes.RowCells<T>;
+  stylesByValue: GridTypes.StylesByValue<T>;
 };
 
-const RowCells = ({ numberCells, separatorSize, cellStyles }: Props) => (
-  <View style={styles.container}>
-    {_.times(numberCells).map((item, index) => {
-      const isLast = index === numberCells - 1;
+const RowCells = <T extends number>({
+  cells,
+  stylesByValue,
+  separatorSize,
+}: Props<T>) => {
+  return (
+    <View style={styles.container}>
+      {cells.map((item, index) => {
+        const isLast = index === cells.length - 1;
 
-      return (
-        <CellContainer
-          key={`column-${index}`}
-          isLast={isLast}
-          style={cellStyles}
-          separatorSize={separatorSize}
-        />
-      );
-    })}
-  </View>
-);
+        return (
+          <Cell
+            key={`column-${index}`}
+            isLast={isLast}
+            style={stylesByValue[item]}
+            separatorSize={separatorSize}
+          />
+        );
+      })}
+    </View>
+  );
+};
 
 export default memo(RowCells);
 

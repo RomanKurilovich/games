@@ -1,29 +1,23 @@
-import React, { memo, useMemo } from 'react';
-import { StyleSheet, View } from 'react-native';
+import React, { memo } from 'react';
+import { StyleSheet } from 'react-native';
 
 import { COLORS, SNAKE } from 'names';
-import { getSpaces } from 'helpers/sizes';
+import { CellAbsolute } from 'components';
 
 type Props = {
   x: number;
   y: number;
 };
 
-const Food = ({ x, y }: Props) => {
-  const { left, top } = getSpaces(
-    x,
-    y,
-    SNAKE.SEPARATOR_SIZE,
-    SNAKE.CELL_SIDE_SIZE,
-  );
-
-  const containerStyles = useMemo(
-    () => [styles.container, { left, top }],
-    [left, top],
-  );
-
-  return <View style={containerStyles} />;
-};
+const Food = ({ x, y }: Props) => (
+  <CellAbsolute
+    x={x}
+    y={y}
+    separatorSize={SNAKE.SEPARATOR_SIZE}
+    cellSideSize={SNAKE.CELL_SIDE_SIZE}
+    style={styles.container}
+  />
+);
 
 export default memo(Food);
 
