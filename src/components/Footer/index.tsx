@@ -1,38 +1,27 @@
-import React, { Fragment, memo, useCallback, useMemo } from 'react';
+import React, { Fragment, memo, useMemo } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { SIZES, STATUSES } from 'names';
 import { ButtonPrimary } from 'components';
-import { useAppDispatch, useAppSelector } from 'hooks/redux';
-import { resetAction, setStatusAction } from 'store/snake/actions';
-import { statusSelector } from 'store/snake/selectors';
 
-const Footer = () => {
-  const dispatch = useAppDispatch();
+type Props = {
+  status: STATUSES.GAME_STATUSES;
+  onPausePress: () => void;
+  onRestartPress: () => void;
+  onStartPress: () => void;
+};
 
-  const status = useAppSelector(statusSelector);
-
-  const setStatus = useCallback((updatedStatus: STATUSES.GAME_STATUSES) => {
-    dispatch(setStatusAction(updatedStatus));
-  }, []);
-
-  const handlePausePress = useCallback(() => {
-    setStatus(STATUSES.GAME_STATUSES.IS_PAUSED);
-  }, []);
-
-  const handleStartPress = useCallback(() => {
-    setStatus(STATUSES.GAME_STATUSES.IN_PROGRESS);
-  }, []);
-
-  const handleRestartPress = useCallback(() => {
-    dispatch(resetAction());
-  }, []);
-
+const Footer = ({
+  onPausePress,
+  onStartPress,
+  onRestartPress,
+  status,
+}: Props) => {
   const footerContent = useMemo(() => {
     if (status === STATUSES.GAME_STATUSES.NOT_INIT) {
       return (
         <View style={styles.buttonContainer}>
-          <ButtonPrimary title="Start" onPress={handleStartPress} />
+          <ButtonPrimary title="Start" onPress={onStartPress} />
         </View>
       );
     }
@@ -40,7 +29,7 @@ const Footer = () => {
     if (status === STATUSES.GAME_STATUSES.IN_PROGRESS) {
       return (
         <View style={styles.buttonContainer}>
-          <ButtonPrimary title="Pause" onPress={handlePausePress} />
+          <ButtonPrimary title="Pause" onPress={onPausePress} />
         </View>
       );
     }
@@ -49,11 +38,11 @@ const Footer = () => {
       return (
         <Fragment>
           <View style={styles.buttonContainer}>
-            <ButtonPrimary title="Start" onPress={handleStartPress} />
+            <ButtonPrimary title="Start" onPress={onStartPress} />
           </View>
           <View style={styles.blank} />
           <View style={styles.buttonContainer}>
-            <ButtonPrimary title="Restart" onPress={handleRestartPress} />
+            <ButtonPrimary title="Restart" onPress={onRestartPress} />
           </View>
         </Fragment>
       );
@@ -62,7 +51,7 @@ const Footer = () => {
     if (status === STATUSES.GAME_STATUSES.IS_OVER) {
       return (
         <View style={styles.buttonContainer}>
-          <ButtonPrimary title="Restart" onPress={handleRestartPress} />
+          <ButtonPrimary title="Restart" onPress={onRestartPress} />
         </View>
       );
     }

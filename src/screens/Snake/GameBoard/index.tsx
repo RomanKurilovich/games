@@ -9,6 +9,7 @@ import {
   canMove,
   checkEatsFood,
   checkGameOver,
+  getNextPosition,
   getRandomFoodPosition,
 } from 'helpers/snake';
 import StoreService from 'store/StoreService';
@@ -42,7 +43,9 @@ const GameBoard = () => {
       moveSnake();
     }, SNAKE.MOVE_INTERVAL);
 
-    return () => clearInterval(intervalId);
+    return () => {
+      clearInterval(intervalId);
+    };
   }, []);
 
   const setSnake = (updatedSnake: SnakeTypes.Snake) => {
@@ -80,24 +83,7 @@ const GameBoard = () => {
     }
 
     const snakeHead = actualSnake[0];
-    const updatedHead = { ...snakeHead };
-
-    switch (actualDirection) {
-      case GESTURE.DIRECTION.UP:
-        updatedHead.y -= 1;
-        break;
-      case GESTURE.DIRECTION.DOWN:
-        updatedHead.y += 1;
-        break;
-      case GESTURE.DIRECTION.LEFT:
-        updatedHead.x -= 1;
-        break;
-      case GESTURE.DIRECTION.RIGHT:
-        updatedHead.x += 1;
-        break;
-      default:
-        break;
-    }
+    const updatedHead = getNextPosition(snakeHead, actualDirection);
 
     if (checkGameOver(updatedHead, SNAKE.BOUNDARIES, actualSnake)) {
       setStatus(STATUSES.GAME_STATUSES.IS_OVER);
@@ -123,12 +109,12 @@ const GameBoard = () => {
   const handleSwipe = useCallback(
     (updatedDirection: GESTURE.DIRECTION) => {
       if (status === STATUSES.GAME_STATUSES.IN_PROGRESS) {
-        if (canMove(updatedDirection, direction)) {
+        if (canMove(updatedDirection, snake)) {
           setDirection(updatedDirection);
         }
       }
     },
-    [direction, status],
+    [direction, status, snake],
   );
 
   return (

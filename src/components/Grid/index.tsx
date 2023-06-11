@@ -20,7 +20,7 @@ const Grid = ({
   <View>
     {_.times(numberCellsY).map((item, index) => {
       const isLast = index === numberCellsY - 1;
-      const separatorStyle = { marginTop: separatorSize };
+      const separatorStyle = { marginBottom: separatorSize };
 
       return (
         <View key={`row-${index}`}>
