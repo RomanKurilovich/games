@@ -8,6 +8,7 @@ import * as SNAKE from './snake';
 import * as GESTURE from './gesture';
 import * as PUZZLE from './puzzle';
 import * as TETRIS from './tetris';
+import * as SOCIALS from './socials';
 
 export {
   ROUTES,
@@ -20,4 +21,5 @@ export {
   GESTURE,
   PUZZLE,
   TETRIS,
+  SOCIALS,
 };
