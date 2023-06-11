@@ -2,10 +2,9 @@ import React, { memo, useMemo } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { TETRIS } from 'names';
+import { Grid } from 'components';
 import { TetrisTypes } from 'types';
 import { getSpaces } from 'helpers/sizes';
-
-import MatrixGrid from '../MatrixGrid';
 
 type Props = {
   tetromino: TetrisTypes.Tetromino;
@@ -26,7 +25,7 @@ const Tetromino = ({ tetromino }: Props) => {
 
   return (
     <View style={containerStyles}>
-      <MatrixGrid
+      <Grid
         matrix={tetromino.matrix}
         separatorSize={TETRIS.SEPARATOR_SIZE}
         stylesByValue={TETRIS.STYLES_TETROMINO_CELL_BY_VALUE}

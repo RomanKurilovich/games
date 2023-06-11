@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import uuid from 'react-native-uuid';
 
 import { PuzzleTypes } from 'types';
@@ -96,7 +95,7 @@ const slideTilesInGroup = (group: PuzzleTypes.Cells) => {
     const currentCell = group[i];
 
     // Place to move tile
-    let targetCell;
+    let targetCell: PuzzleTypes.Cell | undefined;
     let j = i - 1;
 
     while (j >= 0 && canMoveTile(updatedGroup[j], currentCell)) {
@@ -110,7 +109,9 @@ const slideTilesInGroup = (group: PuzzleTypes.Cells) => {
       continue;
     }
 
-    const indexUpdatedCell = _.findIndex(updatedGroup, targetCell);
+    const indexUpdatedCell = updatedGroup.findIndex(
+      (currentCell) => currentCell.index === targetCell?.index,
+    );
     const updatedTargetCell = {
       ...targetCell,
       tiles: [...targetCell.tiles, ...currentCell.tiles],
@@ -155,15 +156,16 @@ export const mergeCells = (
   cellsForMerge: PuzzleTypes.Cells,
 ) =>
   cells.map((cell) => {
-    const needMergeCurrentCell = !!_.find(cellsForMerge, cell);
+    const needMergeCurrentCell = !!cellsForMerge.find(
+      (currentCell) => currentCell.index === cell.index,
+    );
 
     if (needMergeCurrentCell) {
       const currentTile = cell.tiles[0];
-      const createdTile = createTile(currentTile.value * 2);
 
       return {
         ...cell,
-        tiles: [createdTile],
+        tiles: [{ ...currentTile, value: currentTile.value * 2 }],
       };
     }
 

@@ -11,7 +11,7 @@ type Props = {
 };
 
 const NavBar = ({ title }: Props) => (
-  <View style={styles.navBar}>
+  <View style={styles.container}>
     <TouchableOpacity onPress={goBack}>
       <ArrowLeft fill={COLORS.NANDOR} height={30} width={30} />
     </TouchableOpacity>
@@ -25,8 +25,8 @@ const NavBar = ({ title }: Props) => (
 export default memo(NavBar);
 
 const styles = StyleSheet.create({
-  navBar: {
-    height: 56,
+  container: {
+    height: SIZES.NAVBAR_HEIGHT,
     width: '100%',
     backgroundColor: COLORS.PARIS_WHITE,
     alignItems: 'center',

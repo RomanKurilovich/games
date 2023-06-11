@@ -3,16 +3,19 @@ import { StyleSheet, ViewStyle } from 'react-native';
 import { COLORS, SIZES } from 'names';
 import { TetrisTypes } from 'types';
 
+// Durations
+export const MOVE_INTERVAL = 500;
+
+// Sizes
 export const GAME_CONTAINER_WIDTH =
   SIZES.DEVICE_WIDTH - SIZES.CONTENT_MARGIN * 2;
-
 export const SEPARATOR_SIZE = 2;
-
 export const GRID_SIZE_X = 11;
-export const GRID_SIZE_Y = 15;
-
 export const CELL_SIDE_SIZE = Math.floor(
   (GAME_CONTAINER_WIDTH - SEPARATOR_SIZE * (GRID_SIZE_X - 1)) / GRID_SIZE_X,
+);
+export const GRID_SIZE_Y = Math.floor(
+  SIZES.GAME_BOARD_HEIGHT / (CELL_SIDE_SIZE + SEPARATOR_SIZE),
 );
 
 export const BOUNDARIES = {

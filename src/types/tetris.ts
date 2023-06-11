@@ -1,6 +1,7 @@
 import { TETRIS } from 'names';
 
 export type TetrominoNames = typeof TETRIS.TETROMINO_NAMES;
+
 export type TetrominoName = TetrominoNames[number];
 
 export type Tetromino = {
@@ -17,5 +18,3 @@ export type Cell = 0 | 1;
 export type RowCells = Array<Cell>;
 
 export type Score = number;
-
-export type CellStyles = typeof TETRIS.STYLES_GRID_CELL_BY_VALUE;

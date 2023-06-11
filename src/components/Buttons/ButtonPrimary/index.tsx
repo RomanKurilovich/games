@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import { StyleSheet, TouchableOpacity } from 'react-native';
 
 import { AppText } from 'components';
-import { COLORS, TYPOGRAPHY } from 'names';
+import { COLORS, SIZES, TYPOGRAPHY } from 'names';
 
 type Props = {
   title: string;
@@ -22,7 +22,7 @@ export default memo(ButtonPrimary);
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    height: 56,
+    height: SIZES.BUTTON_HEIGHT,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: COLORS.PARIS_WHITE,

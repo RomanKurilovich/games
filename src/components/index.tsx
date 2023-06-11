@@ -3,8 +3,8 @@ import Footer from './Footer';
 import NavBar from './NavBar';
 import AppText from './AppText';
 import ScorePanel from './ScorePanel';
+import CellAbsolute from './CellAbsolute';
 import ButtonText from './Buttons/ButtonText';
-import CellContainer from './Grid/CellContainer';
 import GestureContainer from './GestureContainer';
 import ButtonPrimary from './Buttons/ButtonPrimary';
 import ButtonSecondary from './Buttons/ButtonSecondary';
@@ -16,7 +16,7 @@ export {
   AppText,
   ScorePanel,
   ButtonText,
-  CellContainer,
+  CellAbsolute,
   ButtonPrimary,
   ButtonSecondary,
   GestureContainer,

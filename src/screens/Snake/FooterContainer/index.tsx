@@ -1,7 +1,7 @@
 import React, { memo, useCallback } from 'react';
 
-import { Footer } from 'components';
 import { STATUSES } from 'names';
+import { Footer } from 'components';
 import { useAppDispatch, useAppSelector } from 'hooks/redux';
 import { resetAction, setStatusAction } from 'store/snake/actions';
 import { statusSelector } from 'store/snake/selectors';

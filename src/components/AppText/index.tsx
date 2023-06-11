@@ -14,7 +14,7 @@ const AppText = ({
   style,
 }: PropsWithChildren<Props>) => {
   const containerStyles = useMemo(
-    () => (style ? [TYPOGRAPHY.STYLES[type], style] : TYPOGRAPHY.STYLES[type]),
+    () => [TYPOGRAPHY.STYLES[type], style],
     [style, type],
   );
 

@@ -13,6 +13,10 @@ type Props = {
 };
 
 const getDirection = (event: PanGestureHandlerEventPayload) => {
+  if (event.translationX === 0 && event.translationY === 0) {
+    return;
+  }
+
   if (Math.abs(event.translationX) > Math.abs(event.translationY)) {
     if (event.translationX > 0) {
       return GESTURE.DIRECTION.RIGHT;
@@ -42,14 +46,22 @@ const GestureContainer = ({
             return;
           }
 
-          onSwipe(getDirection(event));
+          const direction = getDirection(event);
+
+          if (direction !== undefined) {
+            onSwipe(direction);
+          }
         })
         .onEnd((event) => {
           if (!waitEndGesture) {
             return;
           }
 
-          onSwipe(getDirection(event));
+          const direction = getDirection(event);
+
+          if (direction !== undefined) {
+            onSwipe(direction);
+          }
         }),
     [onSwipe, waitEndGesture],
   );

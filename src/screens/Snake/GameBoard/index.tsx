@@ -1,34 +1,21 @@
 import React, { memo, useCallback, useEffect } from 'react';
-import { Alert, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
-import { SnakeTypes } from 'types';
 import { GestureContainer, Grid } from 'components';
 import { COLORS, SNAKE, STATUSES, GESTURE } from 'names';
 import { useAppDispatch, useAppSelector } from 'hooks/redux';
-import {
-  canMove,
-  checkEatsFood,
-  checkGameOver,
-  getNextPosition,
-  getRandomFoodPosition,
-} from 'helpers/snake';
-import StoreService from 'store/StoreService';
+import { canMove } from 'helpers/snake';
 import {
   directionSelector,
   foodSelector,
   snakeSelector,
   statusSelector,
 } from 'store/snake/selectors';
-import {
-  setDirectionAction,
-  setFoodAction,
-  setScoreAction,
-  setSnakeAction,
-  setStatusAction,
-} from 'store/snake/actions';
+import { setDirectionAction } from 'store/snake/actions';
 
 import SnakeView from '../SnakeView';
 import Food from '../Food';
+import { useLogics } from './useLogics';
 
 const GameBoard = () => {
   const dispatch = useAppDispatch();
@@ -38,73 +25,21 @@ const GameBoard = () => {
   const food = useAppSelector(foodSelector);
   const direction = useAppSelector(directionSelector);
 
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      moveSnake();
-    }, SNAKE.MOVE_INTERVAL);
-
-    return () => {
-      clearInterval(intervalId);
-    };
-  }, []);
-
-  const setSnake = (updatedSnake: SnakeTypes.Snake) => {
-    dispatch(setSnakeAction(updatedSnake));
-  };
-
-  const setStatus = (updatedStatus: STATUSES.GAME_STATUSES) => {
-    dispatch(setStatusAction(updatedStatus));
-  };
+  const { moveSnake } = useLogics();
 
   const setDirection = (updatedDirection: GESTURE.DIRECTION) => {
     dispatch(setDirectionAction(updatedDirection));
   };
 
-  const setFood = (updatedFood: SnakeTypes.Coordinate) => {
-    dispatch(setFoodAction(updatedFood));
-  };
+  useEffect(() => {
+    if (status === STATUSES.GAME_STATUSES.IN_PROGRESS) {
+      const intervalId = setInterval(() => {
+        moveSnake();
+      }, SNAKE.MOVE_INTERVAL);
 
-  const setScore = (updatedScore: number) => {
-    dispatch(setScoreAction(updatedScore));
-  };
-
-  const moveSnake = () => {
-    const state = StoreService.getState();
-    const {
-      snake: actualSnake,
-      direction: actualDirection,
-      status: actualStatus,
-      food: actualFood,
-      score: actualScore,
-    } = state.snake;
-
-    if (actualStatus !== STATUSES.GAME_STATUSES.IN_PROGRESS) {
-      return;
+      return () => clearInterval(intervalId);
     }
-
-    const snakeHead = actualSnake[0];
-    const updatedHead = getNextPosition(snakeHead, actualDirection);
-
-    if (checkGameOver(updatedHead, SNAKE.BOUNDARIES, actualSnake)) {
-      setStatus(STATUSES.GAME_STATUSES.IS_OVER);
-      Alert.alert('Game over', '');
-
-      return;
-    }
-
-    if (checkEatsFood(updatedHead, actualFood)) {
-      const randomFoodPosition = getRandomFoodPosition(
-        SNAKE.BOUNDARIES.xMax,
-        SNAKE.BOUNDARIES.yMax,
-      );
-
-      setSnake([updatedHead, ...actualSnake]);
-      setScore(actualScore + 1);
-      setFood(randomFoodPosition);
-    } else {
-      setSnake([updatedHead, ...actualSnake.slice(0, -1)]);
-    }
-  };
+  }, [status]);
 
   const handleSwipe = useCallback(
     (updatedDirection: GESTURE.DIRECTION) => {
@@ -122,10 +57,9 @@ const GameBoard = () => {
       <View style={styles.container}>
         <View>
           <Grid
-            numberCellsY={SNAKE.GRID_SIZE_Y}
-            numberCellsX={SNAKE.GRID_SIZE_X}
+            matrix={SNAKE.GRID_MATRIX}
             separatorSize={SNAKE.SEPARATOR_SIZE}
-            cellStyles={styles.cell}
+            stylesByValue={SNAKE.STYLES_GRID_CELL_BY_VALUE}
           />
           <SnakeView snake={snake} />
           <Food x={food.x} y={food.y} />

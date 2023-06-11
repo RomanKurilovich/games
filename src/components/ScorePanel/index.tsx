@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import { StyleSheet, View } from 'react-native';
 
-import { TYPOGRAPHY } from 'names';
+import { SIZES, TYPOGRAPHY } from 'names';
 import { AppText } from 'components';
 
 type Props = {
@@ -22,5 +22,6 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    height: SIZES.SCORE_VIEW_HEIGHT,
   },
 });
