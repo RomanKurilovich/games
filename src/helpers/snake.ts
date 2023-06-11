@@ -34,17 +34,37 @@ export const getRandomFoodPosition = (xMax: number, yMax: number) => {
 };
 
 export const canMove = (
-  updatedDirection: GESTURE.DIRECTION,
+  direction: GESTURE.DIRECTION,
+  snake: SnakeTypes.Snake,
+) => {
+  const nextPosition = getNextPosition(snake[0], direction);
+  const previewHead = snake[1];
+
+  return nextPosition.x !== previewHead.x || nextPosition.y !== previewHead.y;
+};
+
+export const getNextPosition = (
+  startPosition: SnakeTypes.Coordinate,
   direction: GESTURE.DIRECTION,
 ) => {
-  return !(
-    (updatedDirection === GESTURE.DIRECTION.DOWN &&
-      direction === GESTURE.DIRECTION.UP) ||
-    (updatedDirection === GESTURE.DIRECTION.UP &&
-      direction === GESTURE.DIRECTION.DOWN) ||
-    (updatedDirection === GESTURE.DIRECTION.RIGHT &&
-      direction === GESTURE.DIRECTION.LEFT) ||
-    (updatedDirection === GESTURE.DIRECTION.LEFT &&
-      direction === GESTURE.DIRECTION.RIGHT)
-  );
+  const nexPosition = { ...startPosition };
+
+  switch (direction) {
+    case GESTURE.DIRECTION.UP:
+      nexPosition.y -= 1;
+      break;
+    case GESTURE.DIRECTION.DOWN:
+      nexPosition.y += 1;
+      break;
+    case GESTURE.DIRECTION.LEFT:
+      nexPosition.x -= 1;
+      break;
+    case GESTURE.DIRECTION.RIGHT:
+      nexPosition.x += 1;
+      break;
+    default:
+      break;
+  }
+
+  return nexPosition;
 };

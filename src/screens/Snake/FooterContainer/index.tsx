@@ -1,8 +1,20 @@
-import React, { useCallback } from 'react';
+import React, { memo, useCallback } from 'react';
+
 import { Footer } from 'components';
 import { STATUSES } from 'names';
+import { useAppDispatch, useAppSelector } from 'hooks/redux';
+import { resetAction, setStatusAction } from 'store/snake/actions';
+import { statusSelector } from 'store/snake/selectors';
 
 const FooterContainer = () => {
+  const dispatch = useAppDispatch();
+
+  const status = useAppSelector(statusSelector);
+
+  const setStatus = (updatedStatus: STATUSES.GAME_STATUSES) => {
+    dispatch(setStatusAction(updatedStatus));
+  };
+
   const handlePausePress = useCallback(() => {
     setStatus(STATUSES.GAME_STATUSES.IS_PAUSED);
   }, []);
@@ -15,5 +27,14 @@ const FooterContainer = () => {
     dispatch(resetAction());
   }, []);
 
-  return <Footer />;
+  return (
+    <Footer
+      status={status}
+      onRestartPress={handleRestartPress}
+      onStartPress={handleStartPress}
+      onPausePress={handlePausePress}
+    />
+  );
 };
+
+export default memo(FooterContainer);

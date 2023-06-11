@@ -1,22 +1,10 @@
-import React, { memo, useMemo } from 'react';
-import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
-
-import { COLORS } from 'names';
+import React, { memo } from 'react';
+import { StyleProp, View, ViewStyle } from 'react-native';
 
 type Props = {
   style: StyleProp<ViewStyle>;
 };
 
-const Cell = ({ style }: Props) => {
-  const containerStyles = useMemo(() => [styles.container, style], [style]);
-
-  return <View style={containerStyles} />;
-};
+const Cell = ({ style }: Props) => <View style={style} />;
 
 export default memo(Cell);
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: COLORS.HEAVY_METAL,
-  },
-});

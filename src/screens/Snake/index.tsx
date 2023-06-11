@@ -7,8 +7,8 @@ import { NavBar, ScorePanel } from 'components';
 import { useAppSelector } from 'hooks/redux';
 import { maxScoreSelector, scoreSelector } from 'store/snake/selectors';
 
-import Footer from './Footer';
 import GameBoard from './GameBoard';
+import FooterContainer from './FooterContainer';
 
 const Snake = () => {
   const score = useAppSelector(scoreSelector);
@@ -20,7 +20,7 @@ const Snake = () => {
       <View style={styles.contentContainer}>
         <ScorePanel score={score} maxScore={maxScore} />
         <GameBoard />
-        <Footer />
+        <FooterContainer />
       </View>
     </SafeAreaView>
   );

@@ -15,10 +15,12 @@ import StoreService from 'store/StoreService';
 import { storage } from './storage';
 import puzzleSlice from './puzzle';
 import snakeSlice from './snake';
+import tetrisSlice from './tetris';
 
 export const rootReducer = combineReducers({
   puzzle: puzzleSlice.reducer,
   snake: snakeSlice.reducer,
+  tetris: tetrisSlice.reducer,
 });
 
 const persistConfig = {
