@@ -14,7 +14,7 @@ export const BUTTON_HEIGHT = 56;
 
 export const FOOTER_TOP_MARGIN = 16;
 
-export const GAME_BOARD_HEIGHT = Math.floor(
+export const FREE_SPACE = Math.floor(
   DEVICE_HEIGHT -
     CONTENT_MARGIN * 2 -
     BUTTON_HEIGHT -
@@ -26,3 +26,8 @@ export const GAME_BOARD_HEIGHT = Math.floor(
         (initialWindowMetrics?.insets.bottom || 0)
       : 0),
 );
+
+export const GAME_BOARD_HEIGHT =
+  Math.floor(DEVICE_WIDTH * 1.2) > FREE_SPACE
+    ? FREE_SPACE
+    : Math.floor(DEVICE_WIDTH * 1.2);
