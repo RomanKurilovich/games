@@ -1,11 +1,6 @@
 import React, { memo, useMemo } from 'react';
 import { StyleSheet } from 'react-native';
-import Animated, {
-  BounceIn,
-  FlipInXUp,
-  FlipOutXDown,
-  Layout, ZoomIn, ZoomOut,
-} from 'react-native-reanimated';
+import Animated, { Layout, ZoomIn, ZoomOut } from 'react-native-reanimated';
 
 import { PuzzleTypes } from 'types';
 import { PUZZLE } from 'names';
