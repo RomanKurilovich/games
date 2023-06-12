@@ -1,4 +1,4 @@
-import React, { memo, PropsWithChildren, useMemo } from 'react';
+import React, { memo, PropsWithChildren, useMemo, useRef } from 'react';
 import {
   Gesture,
   GestureDetector,
@@ -8,7 +8,6 @@ import {
 import { GESTURE } from 'names';
 
 type Props = {
-  waitEndGesture: boolean;
   onSwipe: (direction: GESTURE.DIRECTION) => void;
 };
 
@@ -29,13 +28,27 @@ const getDirection = (event: PanGestureHandlerEventPayload) => {
 };
 
 const GestureContainer = ({ children, onSwipe }: PropsWithChildren<Props>) => {
+  const isCalled = useRef(false);
+
   const gesture = useMemo(
     () =>
       Gesture.Pan()
         .runOnJS(true)
         .minDistance(20)
-        .onStart((event) => {
+        .onUpdate((event) => {
+          if (
+            isCalled.current ||
+            (event.translationY === 0 && event.translationX === 0)
+          ) {
+            return;
+          }
+
           onSwipe(getDirection(event));
+
+          isCalled.current = true;
+        })
+        .onEnd(() => {
+          isCalled.current = false;
         }),
     [onSwipe],
   );

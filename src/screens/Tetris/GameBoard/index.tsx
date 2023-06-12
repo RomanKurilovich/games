@@ -59,7 +59,7 @@ const GameBoard = () => {
   );
 
   return (
-    <GestureContainer onSwipe={handleSwipe} waitEndGesture>
+    <GestureContainer onSwipe={handleSwipe}>
       <View style={styles.container}>
         <View style={styles.contentContainer}>
           <Grid
