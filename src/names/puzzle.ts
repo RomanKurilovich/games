@@ -4,9 +4,9 @@ import { COLORS, SIZES } from 'names';
 import { PuzzleTypes } from 'types';
 
 // Durations
-export const TILE_MOVEMENT_TIME = 120;
+export const TILE_MOVEMENT_TIME = 80;
 export const TILE_EXITING_DURATION = 150;
-export const TILE_ENTERING_DURATION = 200;
+export const TILE_ENTERING_DURATION = 150;
 
 // Sizes
 export const GAME_CONTAINER_WIDTH =

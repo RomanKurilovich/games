@@ -13,10 +13,6 @@ type Props = {
 };
 
 const getDirection = (event: PanGestureHandlerEventPayload) => {
-  if (event.translationX === 0 && event.translationY === 0) {
-    return;
-  }
-
   if (Math.abs(event.translationX) > Math.abs(event.translationY)) {
     if (event.translationX > 0) {
       return GESTURE.DIRECTION.RIGHT;
@@ -32,38 +28,16 @@ const getDirection = (event: PanGestureHandlerEventPayload) => {
   }
 };
 
-const GestureContainer = ({
-  children,
-  onSwipe,
-  waitEndGesture,
-}: PropsWithChildren<Props>) => {
+const GestureContainer = ({ children, onSwipe }: PropsWithChildren<Props>) => {
   const gesture = useMemo(
     () =>
       Gesture.Pan()
         .runOnJS(true)
-        .onUpdate((event) => {
-          if (waitEndGesture) {
-            return;
-          }
-
-          const direction = getDirection(event);
-
-          if (direction !== undefined) {
-            onSwipe(direction);
-          }
-        })
-        .onEnd((event) => {
-          if (!waitEndGesture) {
-            return;
-          }
-
-          const direction = getDirection(event);
-
-          if (direction !== undefined) {
-            onSwipe(direction);
-          }
+        .minDistance(20)
+        .onStart((event) => {
+          onSwipe(getDirection(event));
         }),
-    [onSwipe, waitEndGesture],
+    [onSwipe],
   );
 
   return <GestureDetector gesture={gesture}>{children}</GestureDetector>;
