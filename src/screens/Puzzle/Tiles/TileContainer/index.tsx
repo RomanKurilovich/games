@@ -1,10 +1,6 @@
 import React, { memo, useMemo } from 'react';
 import { StyleSheet } from 'react-native';
-import Animated, {
-  FlipInXUp,
-  FlipOutXDown,
-  Layout,
-} from 'react-native-reanimated';
+import Animated, { Layout, ZoomIn, ZoomOut } from 'react-native-reanimated';
 
 import { PuzzleTypes } from 'types';
 import { PUZZLE } from 'names';
@@ -31,8 +27,8 @@ const TileContainer = ({ cell, value }: Props) => {
   return (
     <Animated.View
       style={containerStyles}
-      entering={FlipInXUp.duration(PUZZLE.TILE_ENTERING_DURATION)}
-      exiting={FlipOutXDown.duration(PUZZLE.TILE_EXITING_DURATION)}
+      entering={ZoomIn.duration(PUZZLE.TILE_ENTERING_DURATION)}
+      exiting={ZoomOut.duration(PUZZLE.TILE_EXITING_DURATION)}
       layout={Layout.duration(PUZZLE.TILE_MOVEMENT_TIME)}
     >
       <Tile value={value} />
