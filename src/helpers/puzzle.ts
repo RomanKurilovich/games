@@ -162,10 +162,11 @@ export const mergeCells = (
 
     if (needMergeCurrentCell) {
       const currentTile = cell.tiles[0];
+      const createdTile = createTile(currentTile.value * 2);
 
       return {
         ...cell,
-        tiles: [{ ...currentTile, value: currentTile.value * 2 }],
+        tiles: [createdTile],
       };
     }
 
