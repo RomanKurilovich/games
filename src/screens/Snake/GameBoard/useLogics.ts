@@ -1,5 +1,7 @@
-import { SnakeTypes } from 'types';
-import { SNAKE, STATUSES } from 'names';
+import { useNavigation } from '@react-navigation/native';
+
+import { NavigationTypes, SnakeTypes } from 'types';
+import { ROUTES, SNAKE, STATUSES } from 'names';
 import { useAppDispatch } from 'hooks/redux';
 import StoreService from 'store/StoreService';
 import {
@@ -8,7 +10,6 @@ import {
   getNextPosition,
   getRandomFoodPosition,
 } from 'helpers/snake';
-import { showGameOverAlert } from 'helpers/alerts';
 import {
   setFoodAction,
   setScoreAction,
@@ -16,8 +17,12 @@ import {
   setStatusAction,
 } from 'store/snake/actions';
 
+type Navigation =
+  NavigationTypes.GamesScreenProps<ROUTES.MAIN_ROUTES.SNAKE>['navigation'];
+
 export const useLogics = () => {
   const dispatch = useAppDispatch();
+  const navigation = useNavigation<Navigation>();
 
   const setSnake = (updatedSnake: SnakeTypes.Snake) => {
     dispatch(setSnakeAction(updatedSnake));
@@ -45,6 +50,7 @@ export const useLogics = () => {
       direction: actualDirection,
       food: actualFood,
       score: actualScore,
+      maxScore: actualMaxScore,
     } = state.snake;
     const snakeHead = actualSnake[0];
 
@@ -52,7 +58,11 @@ export const useLogics = () => {
 
     if (checkGameOver(updatedHead, SNAKE.BOUNDARIES, actualSnake)) {
       setStatus(STATUSES.GAME_STATUSES.IS_OVER);
-      showGameOverAlert();
+
+      navigation.navigate(ROUTES.MAIN_ROUTES.GAME_OVER_MODAL, {
+        score: actualScore,
+        maxScore: actualMaxScore,
+      });
 
       return;
     }

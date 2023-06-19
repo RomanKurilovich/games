@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useMemo } from 'react';
+import { useNavigation } from '@react-navigation/native';
 
-import { PuzzleTypes } from 'types';
-import { PUZZLE } from 'names';
+import { NavigationTypes, PuzzleTypes } from 'types';
+import { PUZZLE, ROUTES } from 'names';
 import { useAppDispatch, useAppSelector } from 'hooks/redux';
-import { showGameOverAlert } from 'helpers/alerts';
 import {
   addRandomTile,
   getFunctionCheckMovement,
@@ -11,14 +11,23 @@ import {
   mergeCells,
   slideTiles,
 } from 'helpers/puzzle';
-import { cellsSelector, scoreSelector } from 'store/puzzle/selectors';
+import {
+  cellsSelector,
+  maxScoreSelector,
+  scoreSelector,
+} from 'store/puzzle/selectors';
 import { setCellsAction, setScoreAction } from 'store/puzzle/actions';
+
+type Navigation =
+  NavigationTypes.GamesScreenProps<ROUTES.MAIN_ROUTES.PUZZLE>['navigation'];
 
 export const useLogics = () => {
   const dispatch = useAppDispatch();
+  const navigation = useNavigation<Navigation>();
 
   const cells = useAppSelector(cellsSelector);
   const score = useAppSelector(scoreSelector);
+  const maxScore = useAppSelector(maxScoreSelector);
 
   const groupedCells = useMemo(() => getGroupedCells(cells), [cells]);
 
@@ -37,7 +46,10 @@ export const useLogics = () => {
         canMoveLeft() || canMoveRight() || canMoveUp() || canMoveDown();
 
       if (!canMove) {
-        showGameOverAlert();
+        navigation.navigate(ROUTES.MAIN_ROUTES.GAME_OVER_MODAL, {
+          score,
+          maxScore,
+        });
       }
     }
   }, [cells]);

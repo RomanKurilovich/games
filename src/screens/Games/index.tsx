@@ -1,20 +1,16 @@
 import React, { useCallback } from 'react';
 import { Platform, StyleSheet, View } from 'react-native';
-import { StackScreenProps } from '@react-navigation/stack';
 import { initialWindowMetrics } from 'react-native-safe-area-context';
 
-import { COLORS, ROUTES, SIZES } from 'names';
 import { NavigationTypes } from 'types';
 import { ButtonPrimary } from 'components';
+import { COLORS, ROUTES, SIZES } from 'names';
 
 import Social from './Social';
 
-type Props = StackScreenProps<
-  NavigationTypes.GamesStackParamList,
-  ROUTES.MAIN_ROUTES.GAMES
->;
+type Props = NavigationTypes.GamesScreenProps<ROUTES.MAIN_ROUTES.GAMES>;
 
-const Games: React.FC<Props> = ({ navigation }) => {
+const Games = ({ navigation }: Props) => {
   const goToSnake = useCallback(() => {
     navigation.navigate(ROUTES.MAIN_ROUTES.SNAKE);
   }, [navigation]);

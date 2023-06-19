@@ -10,7 +10,11 @@ type Props = {
 };
 
 const ButtonPrimary = ({ title, onPress }: Props) => (
-  <TouchableOpacity style={styles.container} onPress={onPress}>
+  <TouchableOpacity
+    style={styles.container}
+    onPress={onPress}
+    activeOpacity={0.5}
+  >
     <AppText type={TYPOGRAPHY.TYPES.DISPLAY} style={styles.title}>
       {title}
     </AppText>
