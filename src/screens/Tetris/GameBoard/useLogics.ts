@@ -1,5 +1,7 @@
-import { TetrisTypes } from 'types';
-import { STATUSES, TETRIS } from 'names';
+import { useNavigation } from '@react-navigation/native';
+
+import { NavigationTypes, TetrisTypes } from 'types';
+import { ROUTES, STATUSES, TETRIS } from 'names';
 import StoreService from 'store/StoreService';
 import { useAppDispatch, useAppSelector } from 'hooks/redux';
 import {
@@ -9,7 +11,6 @@ import {
   removeRows,
   rotateMatrix,
 } from 'helpers/tetris';
-import { showGameOverAlert } from 'helpers/alerts';
 import { gameBoardSelector, tetrominoSelector } from 'store/tetris/selectors';
 import {
   setGameBoardAction,
@@ -18,8 +19,12 @@ import {
   setTetrominoAction,
 } from 'store/tetris/actions';
 
+type Navigation =
+  NavigationTypes.GamesScreenProps<ROUTES.MAIN_ROUTES.TETRIS>['navigation'];
+
 export const useLogics = () => {
   const dispatch = useAppDispatch();
+  const navigation = useNavigation<Navigation>();
 
   const gameBoard = useAppSelector(gameBoardSelector);
   const tetromino = useAppSelector(tetrominoSelector);
@@ -60,6 +65,7 @@ export const useLogics = () => {
       tetromino: actualTetromino,
       gameBoard: actualGameBoard,
       score: actualScore,
+      maxScore: actualMaxScore,
     } = state.tetris;
     const matrixSize = actualTetromino.matrix.length;
 
@@ -77,7 +83,11 @@ export const useLogics = () => {
 
         if (cellRow < TETRIS.GAME_IS_OVER_POSITION_ROW) {
           setStatus(STATUSES.GAME_STATUSES.IS_OVER);
-          showGameOverAlert();
+
+          navigation.navigate(ROUTES.MAIN_ROUTES.GAME_OVER_MODAL, {
+            score: actualScore,
+            maxScore: actualMaxScore,
+          });
 
           return;
         }

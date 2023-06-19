@@ -10,12 +10,17 @@ import SplashScreen from 'react-native-splash-screen';
 
 import { ROUTES } from 'names';
 import { NavigationTypes } from 'types';
+import GameOver from 'screens/Modals/GameOver';
 
 import { navigationRef } from './actions';
 import GamesStackNavigator from './Stacks/Games';
 
 const SCREEN_OPTIONS: StackNavigationOptions = {
   headerShown: false,
+};
+
+const SCREEN_OPTIONS_MODALS_GROUP: StackNavigationOptions = {
+  presentation: 'transparentModal',
 };
 
 const RootStack = createStackNavigator<NavigationTypes.RootStackParamList>();
@@ -33,6 +38,12 @@ const Navigator = () => {
             name={ROUTES.MAIN_ROUTES.GAMES_STACK}
             component={GamesStackNavigator}
           />
+          <RootStack.Group screenOptions={SCREEN_OPTIONS_MODALS_GROUP}>
+            <RootStack.Screen
+              name={ROUTES.MAIN_ROUTES.GAME_OVER_MODAL}
+              component={GameOver}
+            />
+          </RootStack.Group>
         </RootStack.Navigator>
       </NavigationContainer>
     </GestureHandlerRootView>
